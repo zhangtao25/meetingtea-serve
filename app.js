@@ -6,6 +6,7 @@ var logger = require('morgan');
 var jwt = require('jsonwebtoken');
 
 var authRouter = require('./routes/auth');
+var userRouter = require('./routes/user');
 var noteRouter = require('./routes/note');
 var cityRouter = require('./routes/city');
 
@@ -15,15 +16,26 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+app.use(function(req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Allow-Methods", "*");
+  res.setHeader("Access-Control-Allow-Headers", "x-requested-with,Authorization");
+  res.setHeader("Access-Control-Expose-Headers", "*");
+  next();
+});
+
 app.use(function(req,res,next){
-  if(req.url =='/test'){
-    let tokenObj = req.headers.authorization;
-    tokenObj = JSON.parse(tokenObj)
-    jwt.verify(tokenObj.token,tokenObj.phonenumber,function(err,decode){
+  if(req.url =='/user/update'||req.url =='/user/basic'){
+    console.log('校验成功')
+    let user_phone = JSON.parse(req.headers.authorization).user_phone;
+    let token = JSON.parse(req.headers.authorization).token;
+    console.log(user_phone)
+    jwt.verify(token,user_phone,function(err,decode){
       if(err){
-        res.json({
-          message: 'token过期，请重新登录',
-          resultCode: '403'
+        res.status(401).send({
+          errid: "401",
+          msg: "无效的token"
         })
       }else{
         next();
@@ -41,6 +53,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/auth', authRouter);
+app.use('/user', userRouter);
 app.use('/note', noteRouter);
 app.use('/city', cityRouter);
 

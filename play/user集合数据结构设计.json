@@ -1,0 +1,48 @@
+{
+  "user":{
+    "phoneNumber": 18158899797,
+    "password": "123455",
+    "userId":"5c66c923000000000d0304de",
+    "avatar":{},
+    "nickname":"",
+    "collected": [{"userId": userId(),"noteId": noteId()}],
+    "collect":[{"userId": userId(),"noteId": noteId()}],
+    "liked": [{"userId": userId(),"noteId": noteId()}],
+    "like": [{"userId": userId(),"noteId": noteId()}],
+    "fans": [{"userId": userId()}],
+    "follows": [{"userId": userId()}]
+  },
+  "notes": [
+    {
+      "id": "5c6bee06000000000f002d64",
+      "noteType": "normal",
+      "title": "吃喝玩乐",
+      "desc": "2019早春穿搭 | 去年买过最满意的一条半裙",
+      "cover":"",
+      "images":[],
+      "video" : "",
+      "searchText": "电影",
+      "tagCategories": ["", "影视", "文化娱乐"]
+    }
+  ],
+  "comments":{
+    "targetNote":"5c6bee06000000000f002d64",
+    "comments":[
+      [
+        {
+          "created_at": "Thu Feb 28 17:23:21 +0800 2019",
+          "id": "4344721553727745",
+          "liked": ["zt","gyz"],
+          "text": "vbvbvgnv"
+        },
+        {
+          "created_at": "Thu Feb 28 17:23:21 +0800 2019",
+          "id": "4344721553727745",
+          "like_count": 0,
+          "liked": false,
+          "text": "fnghmghm"
+        }
+      ]
+    ]
+  }
+}
